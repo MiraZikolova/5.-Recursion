@@ -1,30 +1,34 @@
-package tailRecursion4;
+package recursion1;
+
+import java.util.Scanner;
 
 public class Task3 {
 	
-	public static void main(String[] args) {
-		System.out.println(powRecursive(2, 3));
-	}
-// to optimize
-//	public static int powRecursive( int x, int n ) {
-//	   	 if (n == 0) {
-//	   		 return 1;
-//	   	 }
-//	   	 
-//	   	 return x * powRecursive(x, n - 1 );
-//	}
-	
-	//optimized
-	public static int powRecursive( int x, int n ) {
-	   	 return powRecursive(x, n, 1);
+	public static void main (String [] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter a positive number n for the power of 2.");
+		int n = sc.nextInt();
+		System.out.println("2 ^ n = " + result1(n));
+		System.out.println("2 ^ n = " + result2(n));
+		sc.close();
+		
 	}
 	
-	public static int powRecursive( int x, int n, int result ) {    // example 2,3,1 : 2,1,8
-	   	 if (n == 0) {
-	   		 return result;
-	   	 }
-	   	 result *= x;
-	   	 return powRecursive(x, n - 1, result);                     // then 2,2,2 : 2,1,8    answer is 8
+	//iteration
+	public static int result1(int n) {
+		int result = 1;
+		for(int i = 0; i < n; i++) {
+			result *= 2;
+		}
+		return result;
 	}
-
+	
+	
+	//recursion
+	public static int result2(int n) {
+		if (n == 0)                    //base case
+			return 1;
+		else
+			return 2 * result2(n - 1);
+	}
 }

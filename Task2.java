@@ -1,28 +1,27 @@
-package tailRecursion4;
+package recursion1;
 
 public class Task2 {
+	
 	public static void main(String[] args) {
-	   	 System.out.println("Sum is " + xMethod(4));
-	}
-// to optimize
-//	public static int xMethod(int n) {
-//	   	 if (n == 1)
-//	   		 return 1;
-//	   	 else
-//	   		 return n + xMethod(n - 1);
-//	}
-	
-//optimized
-	public static int xMethod(int n) {
-	   	 return xMethod(n, 1);
+	   	 xMethod(1234567);
+	   	 System.out.println();
+	   	 yMethod(1234567);
 	}
 	
-	public static int xMethod(int n, int sum) { // example 4,1 : 3,5 : 2,8 
-	   	 if (n == 1)
-	   		 return sum;
-	   	 else {
-	   		 sum += n;                          
-	   		 return xMethod(n - 1, sum);        //then 3,5 : 2,8 : 1,10     answer is 10
+	//recursion
+	public static void xMethod(int n) {
+	   	 if (n > 0) {                     //base case
+	   		 System.out.print(n % 10);
+	   		 xMethod(n / 10);
 	   	 }
+	 }
+	
+	//iteration
+	public static void yMethod(int n) {
+		while(n > 0) {
+			System.out.print(n % 10);
+			n /= 10;
+		}
 	}
+
 }
