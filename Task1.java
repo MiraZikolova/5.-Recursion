@@ -1,27 +1,18 @@
-package recursion1;
-
+package tailRecursion4;
+// greatest common divider
 public class Task1 {
-	
-	
 	public static void main(String[] args) {
-	   	 System.out.println("Sum is " + xMethod(10));
-	   	 System.out.println("Sum is " + yMethod(10));
-	}
-	//recursion
-	 public static int xMethod(int n) {
-	   	 if (n == 1)
-	   		 return 1;    //base case
-	   	 else
-	   		 return n + xMethod(n - 1);
+		// TODO Auto-generated method stub
+		
+		System.out.println(foo(50, 10));
 	}
 	
-	//iteration
-	public static int yMethod(int n) {
-		int sum = 0;
-		for (int i = 1; i <= n; i++) {
-			sum += i;
-		}
-	   	 return sum;
-	}
+	public static int foo (int x, int y){
+	   	if (y == 0)
+	     	    return x;
+	   	else
+	   			return foo(y, x % y);
+    }
+
 
 }

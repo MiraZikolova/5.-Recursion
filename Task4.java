@@ -1,38 +1,24 @@
-package recursion1;
-
-import java.util.Scanner;
+package tailRecursion4;
 
 public class Task4 {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter a real number x.");
-		double x = sc.nextDouble();
-		System.out.println("Enter a positive number n for the power of x.");
-		int n = sc.nextInt();
-		System.out.println("x ^ n = " + result1(x, n));
-		System.out.println("x ^ n = " + result2(x, n));
-		sc.close();
-		
+		// TODO Auto-generated method stub
+		int[] array = {1, 7, 50, 51, 57};
+		System.out.println("The average is " + findTheAverage(array));
 	}
 	
-	//iteration
-	public static double result1(double x, int n) {
-		double result = 1;
-		for(int i = 0; i < n; i++) {
-			result *= x;
+	public static double findTheAverage(int[] array) {
+		return findTheAverage(array,array.length, 0) / array.length;     //the sum is 0, because we assume the array is empty
+		//the final answer is 15/5 = 3
+	}
+	
+	public static double findTheAverage(int[] array,int length, double sum) {  //example 1,2,3,4,5 , 5 , 0 : 1,2,3,4 , 4 , 5 : 1,2,3 , 3 , 9 : 1,2 , 2 , 12 : 1 , 1 , 14 : empty , 0 , 15
+		if(length == 0) {
+			return sum;
 		}
-		return result;
+		sum += array[length - 1];
+		return findTheAverage(array, length - 1 , sum);    //then 1,2,3,4 , 4 , 5 : 1,2,3 , 3 , 9 : 1,2 , 2 , 12 : 1 , 1 , 14 : empty , 0 , 15
 	}
-	
-	
-	
-	//recursion
-	public static double result2(double x, int n) {
-		if (n == 0)                                    //base case
-			return 1;
-	else {
-			return (x * result2(x, n - 1));
-	}
-	}
+	// we found the sum, and now we are going back to line 11 and divide the sum (15) by the number of participating integers.
 }
