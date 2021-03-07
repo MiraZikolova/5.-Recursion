@@ -1,44 +1,28 @@
-package generics5;
+package tailRecursion4;
 
-import java.util.ArrayList;
-
-public class Task2<E> extends ArrayList<E>{
-	private java.util.ArrayList <E> list = new java.util.ArrayList<>();
-
-//	public Task2() {
-//		
+public class Task2 {
+	public static void main(String[] args) {
+	   	 System.out.println("Sum is " + xMethod(4));
+	}
+// to optimize
+//	public static int xMethod(int n) {
+//	   	 if (n == 1)
+//	   		 return 1;
+//	   	 else
+//	   		 return n + xMethod(n - 1);
 //	}
 	
-	//returns the number of elements in the stack
-	public int getSize() {
-		return list.size();
+//optimized
+	public static int xMethod(int n) {
+	   	 return xMethod(n, 1);
 	}
-
-	//returns the top element, but does not remove it from the stack
-		public E peek() {
-			return list.get(getSize()-1);
-		}
-		
-	//adds a new element on top of the stack
-		public void push(E o) {
-			list.add(o);
-		}
-		
-	//returns and removes the top element of the stack
-		public E pop() {
-			E o = list.get(getSize()-1);
-			list.remove(getSize()-1);
-			return o;
-		}
-		
-	//returns true if the stack is empty
-		public boolean isEmpty() {
-			return list.isEmpty();
-		}
-		
-	@Override
-		public String toString() {
-			return "stack: " + list.toString();
-		}
-		}
-
+	
+	public static int xMethod(int n, int sum) { // example 4,1 : 3,5 : 2,8 
+	   	 if (n == 1)
+	   		 return sum;
+	   	 else {
+	   		 sum += n;                          
+	   		 return xMethod(n - 1, sum);        //then 3,5 : 2,8 : 1,10     answer is 10
+	   	 }
+	}
+}
